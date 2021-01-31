@@ -235,7 +235,7 @@ import Foundation
         }
     }
     func cancela(){
-      self.cantidad=[0,0,0,0]
+      self.cantidad=[0,0,0]
       return
     }
     func imprime(){
@@ -267,16 +267,16 @@ import Foundation
     }
   }
   class orden{
-    let numOrden:Int
+    var numOrden:Int
     var estado:String
     lazy var beb=bebidas()
     lazy var tac=tacos()
     lazy var comp=complementos()
-    init(i:Int){
-      self.numOrden=i
+    init(){
+      self.numOrden=0-1
       self.estado="Haciendo"
     }
-    func anadir(){
+    func aniadir(){
       var seleccion:Int
       print("¿Que desea añadir?",
             "1.-Taco",
@@ -299,26 +299,222 @@ import Foundation
       }
     }
     func quitar(){
-
+      var seleccion:Int
+      print("¿Que desea quitar?",
+            "1.-Taco",
+            "2.-Complemento",
+            "3.-Bebida")
+      seleccion=Int(readLine()!)!
+      switch seleccion{
+        case 1:
+          tac.quitar()
+          return
+        case 2:
+          comp.quitar()
+          return
+        case 3:
+          beb.quitar()
+          return
+        default:
+          print("Respuesta no valida")
+          return
+      }
     }
     func mostrarOrden(){
+      print("\n\nOrden numero ",self.numOrden,"\n",
+            "Se encuentra en estado",self.estado)
       print("Esta orden incluye")
       tac.imprime()
       comp.imprime()
       beb.imprime()
       let total=tac.total()+comp.total()+beb.total()
-      print("Con un total de:",total)
+      print("Con un total de:",total,"\n\n")
       return
     }
     func cancelarOrden(){
-
+      var seleccion:Int
+      print("¿Que desea cancelar?",
+            "1.-Taco",
+            "2.-Complemento",
+            "3.-Bebida")
+      seleccion=Int(readLine()!)!
+      switch seleccion{
+        case 1:
+          tac.cancela()
+          return
+        case 2:
+          comp.cancela()
+          return
+        case 3:
+          beb.cancela()
+          return
+        default:
+          print("Respuesta no valida")
+          return
+      }
+    }
+    func mainOrden(numOrden:Int){
+      if(self.numOrden==0-1){
+        self.numOrden=numOrden
+      }
+      var loop:Bool=true
+      var seleccion:Int
+      while loop==true{
+        print("Numero de orden ",self.numOrden,"\n",
+            "Selecciona su opcion\n",
+            "1.-Añadir a la orden\n",
+            "2.-Quitar a la orden\n",
+            "3.-Mostrar orden\n",
+            "4.-Cancelar a la orden\n",
+            "5.-Salir")
+        seleccion=Int(readLine()!)!
+        switch seleccion{
+          case 1:
+            aniadir()
+          case 2:
+            quitar()
+          case 3:
+            mostrarOrden()
+          case 4:
+            cancelarOrden()
+          case 5:
+          loop=false
+            return
+          default:
+            print("Respuesta no valida, regresando a la   taqueria")
+            return
+        }
+      }
+    }
+  }
+  class taqueria{
+    let nombre:String
+    var ordenesHechas:Int
+    lazy var ordenes=[orden()]
+    init(){
+      self.nombre="El si hay"
+      self.ordenesHechas=0
+      print(ordenes)
+    }
+    func nuevaOrden(){
+      let ordenN=orden()
+      self.ordenes.append(ordenN)
+      self.ordenesHechas=self.ordenesHechas+1
+      print("Iniciando nueva orden")
+      self.ordenes[self.ordenesHechas].mainOrden(numOrden:self.ordenesHechas)
+    }
+    func modificarOrden(){
+      var seleccion:Int
+      print("¿Cual orden desea modificar?\n",
+            "Ordenes hechas: ",self.ordenesHechas)
+      seleccion=Int(readLine()!)!
+      if (seleccion>ordenesHechas){
+        print("No existe esa orden")
+        return
+      }
+      if(self.ordenes[seleccion].estado=="Cancelado"){
+        print("Orden candelada")
+        return
+      }
+      if(self.ordenes[seleccion].estado=="Despachado"){
+        print("Orden despachada")
+        return
+      }
+      if (seleccion<=self.ordenesHechas){
+        print("Modificando la orden:",seleccion)
+        self.ordenes[seleccion].mainOrden(numOrden:seleccion)
+      }
+      else{
+        print("Esa orden no existe")
+      }
+    }
+    func borrarOrden(){
+      var seleccion:Int
+      print("¿Cual orden desea cancelar?\n",
+            "Ordenes hechas: ",self.ordenesHechas)
+      seleccion=Int(readLine()!)!
+      if (seleccion>ordenesHechas){
+        print("No existe esa orden")
+        return
+      }
+      if(self.ordenes[seleccion].estado=="Cancelado"){
+        print("Orden candelada")
+        return
+      }
+      if(self.ordenes[seleccion].estado=="Despachado"){
+        print("Orden despachada")
+        return
+      }
+      if (seleccion<=self.ordenesHechas){
+        print("Cancelando la orden la orden:",seleccion)
+        self.ordenes[seleccion].estado="Cancelado"
+      }
+      else{
+        print("Esa orden no existe")
+      }
+      return
+    }
+    func despacharOrden(){
+      var seleccion:Int
+      print("¿Cual orden desea despachar?\n",
+            "Ordenes hechas: ",self.ordenesHechas)
+      seleccion=Int(readLine()!)!
+      if(self.ordenes[seleccion].estado=="Cancelado"){
+        print("Orden candelada")
+        return
+      }
+      if(self.ordenes[seleccion].estado=="Despachado"){
+        print("Orden despachada")
+        return
+      }
+      if (seleccion<=self.ordenesHechas){
+        print("Despachando la orden la orden:",seleccion)
+        self.ordenes[seleccion].estado="Despachado"
+      }
+      else{
+        print("Esa orden no existe")
+      }
+      return
+    }
+    func despacharOrden(){
+      var loop:Bool=true
+      var seleccion:Int
+      print("Bienvenid@ a la taqueria ",self.nombre)
+      while loop==true{
+        print("Selecciona tu opcion\n",
+            "1.-Nueva orden\n",
+            "2.-Modificar orden\n",
+            "3.-cancelar orden\n",
+            "4.-Despachar orden\n",
+            "5.-Salir\n")
+        seleccion=Int(readLine()!)!
+        switch seleccion{
+          case 1:
+            nuevaOrden()
+          case 2:
+            modificarOrden()
+          case 3:
+            borrarOrden()
+          case 4:
+            borrarOrden()
+          case 5:
+            print("Hasta luego...")
+            loop=false
+            return
+          default:
+            print("Respuesta no valida, intente otra vez")
+            return
+        }
+      }
     }
   }
 func main(){
-  let orden1=orden(i:16)
-  orden1.anadir()
-  orden1.anadir()
-  orden1.anadir()
-  orden1.mostrarOrden()
+  /*let orden1=orden(i:16)
+  orden1.aniadir()
+  orden1.aniadir()
+  orden1.aniadir()
+  orden1.mostrarOrden()*/
+  let taqueros=taqueria()
+  taqueros.mainTaqueria()
 }
 main()
