@@ -370,19 +370,42 @@ import Foundation
         seleccion=Int(readLine()!)!
         switch seleccion{
           case 1:
+            if(self.estado=="Cancelado"){
+              print("Orden candelada, no se puede añadir")
+              return
+            }
+            if(self.estado=="Despachado"){
+              print("Orden despachada, no se puede añadir")
+            return
+            }
             aniadir()
           case 2:
+            if(self.estado=="Cancelado"){
+              print("Orden candelada, no se puede quitar")
+              return
+            }
+            if(self.estado=="Despachado"){
+              print("Orden despachada, no se puede quitar")
+            return
+            }
             quitar()
           case 3:
             mostrarOrden()
           case 4:
+            if(self.estado=="Cancelado"){
+              print("Orden candelada, no se puede cancelar")
+              return
+            }
+            if(self.estado=="Despachado"){
+              print("Orden despachada, no se puede cancelar")
+            return
+            }
             cancelarOrden()
           case 5:
           loop=false
             return
           default:
             print("Respuesta no valida, regresando a la   taqueria")
-            return
         }
       }
     }
@@ -394,7 +417,6 @@ import Foundation
     init(){
       self.nombre="El si hay"
       self.ordenesHechas=0
-      print(ordenes)
     }
     func nuevaOrden(){
       let ordenN=orden()
@@ -470,13 +492,14 @@ import Foundation
       if (seleccion<=self.ordenesHechas){
         print("Despachando la orden la orden:",seleccion)
         self.ordenes[seleccion].estado="Despachado"
+        self.ordenes[seleccion].mostrarOrden()
       }
       else{
         print("Esa orden no existe")
       }
       return
     }
-    func despacharOrden(){
+    func mainTaqueria(){
       var loop:Bool=true
       var seleccion:Int
       print("Bienvenid@ a la taqueria ",self.nombre)
@@ -496,24 +519,18 @@ import Foundation
           case 3:
             borrarOrden()
           case 4:
-            borrarOrden()
+            despacharOrden()
           case 5:
             print("Hasta luego...")
             loop=false
             return
           default:
             print("Respuesta no valida, intente otra vez")
-            return
         }
       }
     }
   }
 func main(){
-  /*let orden1=orden(i:16)
-  orden1.aniadir()
-  orden1.aniadir()
-  orden1.aniadir()
-  orden1.mostrarOrden()*/
   let taqueros=taqueria()
   taqueros.mainTaqueria()
 }
