@@ -1,3 +1,6 @@
+//Creado por Aquino Santiago Rogelio Gerardo
+//Para la clase de Computo movil
+//Fecha: 01/02/2021
 import Glibc
 import Foundation
 /*Clase encargada de crear bebidas, aqui se contendra todo lo relacionado con la bebida, asi como las funciones relevaltes para ella
