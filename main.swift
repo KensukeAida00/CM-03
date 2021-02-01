@@ -8,15 +8,15 @@ import Foundation
     let costo:[Int] 
 
     init(){
-      self.nombre=["Agua de horchata","Agua de Jamaica","Coca-cola","Boing"]
+      self.nombre=["A/Horchata","A/Jamaica","Coca-cola","Boing"]
       self.costo=[30,30,40,35] 
       self.cantidad=[0,0,0,0]
     }
     func anianir(){
       var name:Int
       print("¿Que tipo de bebida desea?\n",
-            "1.-Agua de horchata\n",
-            "2.-Agua de Jamaica\n",
+            "1.-A/Horchata\n",
+            "2.-A/Jamaica\n",
             "3.-Coca-cola\n",
             "4.-Boing")
       name=Int(readLine()!)!
@@ -34,8 +34,8 @@ import Foundation
       var name:Int
       var cant:Int
       print("¿Que bebida desea quitar?")
-      print(" 1.-Agua de horchata\n",
-          "2.-Agua de Jamaica\n",
+      print(" 1.-A/Horchata\n",
+          "2.-A/Jamaica\n",
           "3.-Coca-cola\n",
           "4.-Boing")
       name=Int(readLine()!)!
@@ -499,6 +499,31 @@ import Foundation
       }
       return
     }
+    func menuTaqueria(){
+      var i: Int=0
+      print("\n\nEl menu actual de la taqueria consiste en:\n",
+            "\nTacos:\tPrecio:")
+      while (i<self.ordenes[0].tac.nombre.count){
+        print(self.ordenes[0].tac.nombre[i],"  \t",
+              self.ordenes[0].tac.costo[i])
+        i=1+i
+      }
+      i=0
+      print("\nBebidas:\tPrecio:")
+      while (i<self.ordenes[0].beb.nombre.count){
+        print(self.ordenes[0].beb.nombre[i],"  \t",
+              self.ordenes[0].beb.costo[i])
+        i=1+i
+      }
+      i=0
+      print("\nBebidas:\tPrecio:")
+      while (i<self.ordenes[0].comp.nombre.count){
+        print(self.ordenes[0].comp.nombre[i],"  \t",
+              self.ordenes[0].comp.costo[i])
+        i=1+i
+      }
+      print("\n\n")
+    }
     func mainTaqueria(){
       var loop:Bool=true
       var seleccion:Int
@@ -509,7 +534,8 @@ import Foundation
             "2.-Modificar orden\n",
             "3.-cancelar orden\n",
             "4.-Despachar orden\n",
-            "5.-Salir\n")
+            "5.-Mostrar menú\n",
+            "6.-Salir\n")
         seleccion=Int(readLine()!)!
         switch seleccion{
           case 1:
@@ -521,6 +547,8 @@ import Foundation
           case 4:
             despacharOrden()
           case 5:
+            menuTaqueria()
+          case 6:
             print("Hasta luego...")
             loop=false
             return
