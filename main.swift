@@ -1,17 +1,20 @@
 import Glibc
 import Foundation
-
+/*Clase encargada de crear bebidas, aqui se contendra todo lo relacionado con la bebida, asi como las funciones relevaltes para ella
+nombre:Constante que guardara los nombres de las bebidas
+cantidad:Guardara la cantidad de bebidas solicitadas
+costo:Constante que guarda los costros de las bebidas*/
   class bebidas{
-
     let nombre:[String]
     var cantidad:[Int]
-    let costo:[Int] 
-
+    let costo:[Int]
+    /*Inicializador de la clase bebida*/
     init(){
       self.nombre=["A/Horchata","A/Jamaica","Coca-cola","Boing"]
       self.costo=[30,30,40,35] 
       self.cantidad=[0,0,0,0]
     }
+    /*Funcion encargada de añadir bebidas dentro de la orden*/
     func anianir(){
       var name:Int
       print("¿Que tipo de bebida desea?\n",
@@ -30,6 +33,7 @@ import Foundation
         return
       }
     }
+    /*Funcion encargada de quitar bebidas dentro de la orden*/
     func quitar(){
       var name:Int
       var cant:Int
@@ -58,10 +62,12 @@ import Foundation
         return
         }
     }
+    /*Funcion encargada de cancelar las bebidas dentro de la orden*/
     func cancela(){
       self.cantidad=[0,0,0,0]
       return
     }
+    /*Funcion encargada de imprimir las bebidas solicitadas dentro de la orden*/
     func imprime(){
       var i:Int=0
       var sc:Int=4
@@ -80,6 +86,9 @@ import Foundation
       }
       return
     }
+    /*Funcion encargada de dar el total de las bebidas solicitadas dentro de la orden
+    Regresa:
+    Int:Total de las bebidas, la suma de los productos correspondiente al costo y cantidad*/
     func total()->Int{
       var total:Int=0
       var i:Int=0
@@ -90,17 +99,22 @@ import Foundation
       return total
     }
   }
+/*Clase encargada de crear complementos, aqui se contendra todo lo relacionado con los complementos, asi como las funciones relevaltes para ella
+nombre:Constante que guardara los nombres de los complementos
+cantidad:Guardara la cantidad de complementos solicitados
+costo:Constante que guarda los costros de los complementos*/
   class complementos{
 
     let nombre:[String]
     var cantidad:[Int]
     let costo:[Int] 
-
+    /*Inicializador de la clase complemento*/
     init(){
       self.nombre=["Limon","Orden de cebolla","Orden de cilantro","Orden de salsa"]
       self.costo=[3,2,2,10] 
       self.cantidad=[0,0,0,0]
     }
+    /*Funcion encargada de añadir complementos dentro de la orden*/
     func anianir(){
       var name:Int
       print("¿Que tipo de bebida desea?\n",
@@ -119,6 +133,7 @@ import Foundation
         return
       }
     }
+    /*Funcion encargada de quitar complementos dentro de la orden*/
     func quitar(){
       var name:Int
       var cant:Int
@@ -147,10 +162,12 @@ import Foundation
         return
         }
     }
+    /*Funcion encargada de cancelar complementos dentro de la orden*/
     func cancela(){
       self.cantidad=[0,0,0,0]
       return
     }
+    /*Funcion encargada de imprimir complementos solicitados dentro de la orden*/
     func imprime(){
       var i:Int=0
       var sc:Int=4
@@ -169,6 +186,9 @@ import Foundation
       }
       return
     }
+    /*Funcion encargada de dar el total de complementos solicitados dentro de la orden
+    Regresa:
+    Int:Total de complementos, la suma de los productos correspondiente al costo y cantidad*/
     func total()->Int{
       var total:Int=0
       var i:Int=0
@@ -179,17 +199,22 @@ import Foundation
       return total
     }
   }
+/*Clase encargada de crear tacos, aqui se contendra todo lo relacionado con los tacos, asi como las funciones relevaltes para ella
+nombre:Constante que guardara los nombres de los tacos
+cantidad:Guardara la cantidad de tacos solicitados
+costo:Constante que guarda los costros de los tacos*/
   class tacos{
 
     let nombre:[String]
     var cantidad:[Int]
     let costo:[Int] 
-
+    /*Inicializador de la clase taco*/
     init(){
       self.nombre=["Carnitas","Suadero","Pastor"]
       self.costo=[15,12,12] 
       self.cantidad=[0,0,0]
     }
+    /*Funcion encargada de añadir tacos dentro de la orden*/
     func anianir(){
       var name:Int
       print("¿Que tipo de taco desea?\n",
@@ -207,6 +232,7 @@ import Foundation
         return
       }
     }
+    /*Funcion encargada de quitar tacos dentro de la orden*/
     func quitar(){
       var name:Int
       var cant:Int
@@ -234,10 +260,12 @@ import Foundation
         return
         }
     }
+    /*Funcion encargada de cancelar los tacos de la orden*/
     func cancela(){
       self.cantidad=[0,0,0]
       return
     }
+    /*Funcion encargada de imprimir los tacos solicitados dentro de la orden*/
     func imprime(){
       var i:Int=0
       var sc:Int=4
@@ -256,6 +284,9 @@ import Foundation
       }
       return
     }
+     /*Funcion encargada de dar el total de los tacos solicitados dentro de la orden
+    Regresa:
+    Int:Total de los tacos, la suma de los productos correspondiente al costo y cantidad*/
     func total()->Int{
       var total:Int=0
       var i:Int=0
@@ -266,6 +297,12 @@ import Foundation
       return total
     }
   }
+/*Clase encargada de crear ordenes, aqui se contendra todo lo relacionado con las ordenes y lo que lo contiene, asi como las funciones relevaltes para ella
+numOrden:Numero de orden
+estado:Estado de la orden, puede ser "Cancelado", "Haciendo" y "Despachado"
+beb:Inicializador de la clase bebidas dentro de las ordenes
+tac:Inicializador de la clase tacos dentro de las ordenes
+comp:Inicializador de la clase complemento dentro de las ordenes*/
   class orden{
     var numOrden:Int
     var estado:String
@@ -276,12 +313,13 @@ import Foundation
       self.numOrden=0-1
       self.estado="Haciendo"
     }
+    /*Funcion para añadir tacos, bebidas o complementos de la orden*/
     func aniadir(){
       var seleccion:Int
       print("¿Que desea añadir?",
-            "1.-Taco",
-            "2.-Complemento",
-            "3.-Bebida")
+            "1.-Taco\n",
+            "2.-Complemento\n",
+            "3.-Bebida\n")
       seleccion=Int(readLine()!)!
       switch seleccion{
         case 1:
@@ -298,6 +336,7 @@ import Foundation
           return
       }
     }
+    /*Funcion para quitar tacos, bebidas o complementos de la orden*/
     func quitar(){
       var seleccion:Int
       print("¿Que desea quitar?",
@@ -320,6 +359,7 @@ import Foundation
           return
       }
     }
+    /*Funcion para mostrar tacos, bebidas y complementos de la orden*/
     func mostrarOrden(){
       print("\n\nOrden numero ",self.numOrden,"\n",
             "Se encuentra en estado",self.estado)
@@ -331,6 +371,7 @@ import Foundation
       print("Con un total de:",total,"\n\n")
       return
     }
+    /*Funcion para cancelar tacos, bebidas o complementos de la orden*/
     func cancelarOrden(){
       var seleccion:Int
       print("¿Que desea cancelar?",
@@ -353,6 +394,9 @@ import Foundation
           return
       }
     }
+    /*Funcion creada para ser el menu de la clase orden, en este menu se puede seleccionar acciones que muestren o afecte a la orden
+    Entra:
+    numOrden:Numero que, a menos que ya este asignado, hara para darle ese numero a la orden*/
     func mainOrden(numOrden:Int){
       if(self.numOrden==0-1){
         self.numOrden=numOrden
@@ -410,6 +454,10 @@ import Foundation
       }
     }
   }
+/*Clase encargada de crear la taqueria, aqui se contendra todo lo relacionado con la taqueria y lo que lo contiene, asi como las funciones relevaltes para ella
+nombre:Nombre de la taqueria
+ordenesHechas:Numero de las ordenes hechas
+ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamente para inicializarlo y para mostrar el menu*/ 
   class taqueria{
     let nombre:String
     var ordenesHechas:Int
@@ -529,6 +577,7 @@ import Foundation
       var seleccion:Int
       print("Bienvenid@ a la taqueria ",self.nombre)
       while loop==true{
+        print("Pedidos hechos hasta hoy ",self.ordenesHechas)
         print("Selecciona tu opcion\n",
             "1.-Nueva orden\n",
             "2.-Modificar orden\n",
