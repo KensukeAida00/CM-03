@@ -607,7 +607,6 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
             menuTaqueria()
           case 6:
             print("Hasta luego...")
-            loop=false
             return
           default:
             print("Respuesta no valida, intente otra vez")
