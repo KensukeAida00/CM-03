@@ -466,6 +466,7 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
       self.nombre="El si hay"
       self.ordenesHechas=0
     }
+    /*Creara una nueva orden y lo encola al arreglo de ordenes*/
     func nuevaOrden(){
       let ordenN=orden()
       self.ordenes.append(ordenN)
@@ -473,6 +474,7 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
       print("Iniciando nueva orden")
       self.ordenes[self.ordenesHechas].mainOrden(numOrden:self.ordenesHechas)
     }
+    /*Modifica una orden, no se puede modificar en caso de que ya se encuente cancelado o despachado*/
     func modificarOrden(){
       var seleccion:Int
       print("¿Cual orden desea modificar?\n",
@@ -498,6 +500,7 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
         print("Esa orden no existe")
       }
     }
+    /*Cancela una orden entera, no se puede borrar en caso de que ya se encuente cancelado o despachado*/
     func borrarOrden(){
       var seleccion:Int
       print("¿Cual orden desea cancelar?\n",
@@ -524,6 +527,7 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
       }
       return
     }
+    /*Despacha una orden, no se puede despachar en caso de que ya se encuente cancelado o despachado*/
     func despacharOrden(){
       var seleccion:Int
       print("¿Cual orden desea despachar?\n",
@@ -547,6 +551,7 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
       }
       return
     }
+    /*Muestra el menu de la taqueria usando la orden 0 como el pibote, ya que siempre estara creado*/
     func menuTaqueria(){
       var i: Int=0
       print("\n\nEl menu actual de la taqueria consiste en:\n",
@@ -572,11 +577,11 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
       }
       print("\n\n")
     }
+    /*Funcion que crea el menu principal de la taqueria, permite usar las funciones de la taqueria y salir de esta*/
     func mainTaqueria(){
-      var loop:Bool=true
       var seleccion:Int
       print("Bienvenid@ a la taqueria ",self.nombre)
-      while loop==true{
+      while true==true{
         print("Pedidos hechos hasta hoy ",self.ordenesHechas)
         print("Selecciona tu opcion\n",
             "1.-Nueva orden\n",
@@ -607,6 +612,7 @@ ordenes:Cadena de ordenes que contendra la taqueria, la orden 0 se usara solamen
       }
     }
   }
+/*Funcion principal que crea y entra en la taqueria*/
 func main(){
   let taqueros=taqueria()
   taqueros.mainTaqueria()
