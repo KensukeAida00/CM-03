@@ -13,7 +13,7 @@ costo:Constante que guarda los costros de las bebidas*/
     let costo:[Int]
     /*Inicializador de la clase bebida*/
     init(){
-      self.nombre=["A/Horchata","A/Jamaica","Coca-cola","Boing"]
+      self.nombre=["A/Horchata","A/Jamaica","Coca-cola","Boing\t"]
       self.costo=[30,30,40,35] 
       self.cantidad=[0,0,0,0]
     }
@@ -77,7 +77,7 @@ costo:Constante que guarda los costros de las bebidas*/
       print("Bebidas ordenadas:")
       while i<4{
         if self.cantidad[i]>0{
-          print(self.nombre[i],"->",self.cantidad[i])
+          print(self.nombre[i],"\t",self.cantidad[i],"\t$",self.cantidad[i]*self.costo[i])
         }
         else{
           sc=sc-1
@@ -113,14 +113,14 @@ costo:Constante que guarda los costros de los complementos*/
     let costo:[Int] 
     /*Inicializador de la clase complemento*/
     init(){
-      self.nombre=["Limon","Orden de cebolla","Orden de cilantro","Orden de salsa"]
+      self.nombre=["Limon\t\t\t","Orden de cebolla","Orden de cilantro","Orden de salsa\t"]
       self.costo=[3,2,2,10] 
       self.cantidad=[0,0,0,0]
     }
     /*Funcion encargada de añadir complementos dentro de la orden*/
     func anianir(){
       var name:Int
-      print("¿Que tipo de bebida desea?\n",
+      print("¿Que tipo de complemento desea?\n",
           "1.-Limon\n",
           "2.-Orden de cebolla\n",
           "3.-Orden de cilantro\n",
@@ -177,7 +177,7 @@ costo:Constante que guarda los costros de los complementos*/
       print("complementos ordenados:")
       while i<4{
         if self.cantidad[i]>0{
-          print(self.nombre[i],"->",self.cantidad[i])
+          print(self.nombre[i],"\t",self.cantidad[i],"\t$",self.cantidad[i]*self.costo[i])
         }
         else{
           sc=sc-1
@@ -213,7 +213,7 @@ costo:Constante que guarda los costros de los tacos*/
     let costo:[Int] 
     /*Inicializador de la clase taco*/
     init(){
-      self.nombre=["Carnitas","Suadero","Pastor"]
+      self.nombre=["Carnitas","Suadero","Pastor\t"]
       self.costo=[15,12,12] 
       self.cantidad=[0,0,0]
     }
@@ -275,7 +275,7 @@ costo:Constante que guarda los costros de los tacos*/
       print("Tacos ordenados:")
       while i<3{
         if self.cantidad[i]>0{
-          print(self.nombre[i],"->",self.cantidad[i])
+          print(self.nombre[i],"\t",self.cantidad[i],"\t$",self.cantidad[i]*self.costo[i])
         }
         else{
           sc=sc-1
@@ -319,7 +319,7 @@ comp:Inicializador de la clase complemento dentro de las ordenes*/
     /*Funcion para añadir tacos, bebidas o complementos de la orden*/
     func aniadir(){
       var seleccion:Int
-      print("¿Que desea añadir?",
+      print("¿Que desea añadir?\n",
             "1.-Taco\n",
             "2.-Complemento\n",
             "3.-Bebida\n")
@@ -342,10 +342,10 @@ comp:Inicializador de la clase complemento dentro de las ordenes*/
     /*Funcion para quitar tacos, bebidas o complementos de la orden*/
     func quitar(){
       var seleccion:Int
-      print("¿Que desea quitar?",
-            "1.-Taco",
-            "2.-Complemento",
-            "3.-Bebida")
+      print("¿Que desea añadir?\n",
+            "1.-Taco\n",
+            "2.-Complemento\n",
+            "3.-Bebida\n")
       seleccion=Int(readLine()!)!
       switch seleccion{
         case 1:
@@ -367,20 +367,21 @@ comp:Inicializador de la clase complemento dentro de las ordenes*/
       print("\n\nOrden numero ",self.numOrden,"\n",
             "Se encuentra en estado",self.estado)
       print("Esta orden incluye")
+      print("Elemento:\t\t\tCantidad:\tT/Cantidad($):")
       tac.imprime()
       comp.imprime()
       beb.imprime()
       let total=tac.total()+comp.total()+beb.total()
-      print("Con un total de:",total,"\n\n")
+      print("Con un total de:$",total,"\n\n")
       return
     }
     /*Funcion para cancelar tacos, bebidas o complementos de la orden*/
     func cancelarOrden(){
       var seleccion:Int
-      print("¿Que desea cancelar?",
-            "1.-Taco",
-            "2.-Complemento",
-            "3.-Bebida")
+      print("¿Que desea añadir?\n",
+            "1.-Taco\n",
+            "2.-Complemento\n",
+            "3.-Bebida\n")
       seleccion=Int(readLine()!)!
       switch seleccion{
         case 1:
